@@ -1,0 +1,34 @@
+/* Remove estilos estranhos herdados do AdminLTE */
+button,
+input,
+select,
+textarea {
+    background-image: none !important;
+}
+
+/* Corrige inputs com pseudo-elementos */
+input::before,
+input::after,
+button::before,
+button::after {
+    display: none !important;
+    content: none !important;
+}
+
+/* Remove bolinhas/list-style acidentais */
+ul, ol {
+    list-style: none !important;
+    padding-left: 0;
+}
+
+/* Corrige botões do Flux */
+button {
+    border-radius: .375rem;
+    border: none;
+}
+
+/* Corrige checkbox/radio */
+input[type="checkbox"],
+input[type="radio"] {
+    appearance: auto;
+}
