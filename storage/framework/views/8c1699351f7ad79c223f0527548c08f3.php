@@ -1,6 +1,6 @@
 
 
-<?php $__env->startSection('title', 'Reservas'); ?>
+<?php $__env->startSection('title', 'Sistema de Reservas'); ?>
 
 <?php $__env->startSection('content'); ?>
 <div class="container-fluid">

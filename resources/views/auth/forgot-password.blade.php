@@ -1,6 +1,6 @@
 @extends('layouts.auth.adminlte')
 
-@section('title', 'Redefinir Senha')
+@section('title', 'Recuperar Senha')
 
 @section('content')
 <div class="login-box">
@@ -11,10 +11,17 @@
     <div class="card">
         <div class="card-body login-card-body">
             <p class="login-box-msg">
-                Defina sua nova senha
+                Informe seu e-mail para receber o link de redefinição de senha.
             </p>
 
-            {{-- Erros --}}
+            {{-- Status --}}
+            @if (session('status'))
+                <div class="alert alert-success">
+                    {{ session('status') }}
+                </div>
+            @endif
+
+            {{-- Errors --}}
             @if ($errors->any())
                 <div class="alert alert-danger">
                     <ul class="mb-0">
@@ -25,41 +32,21 @@
                 </div>
             @endif
 
-            <form method="POST" action="{{ route('password.update') }}">
+            <form method="POST" action="{{ route('password.email') }}">
                 @csrf
 
-                <input type="hidden" name="token" value="{{ request()->route('token') }}">
-                <input type="hidden" name="email" value="{{ request('email') }}">
-
-                {{-- Nova senha --}}
                 <div class="input-group mb-3">
                     <input
-                        type="password"
-                        name="password"
+                        type="email"
+                        name="email"
                         class="form-control"
-                        placeholder="Nova senha"
+                        placeholder="Email"
                         required
                         autofocus
                     >
                     <div class="input-group-append">
                         <div class="input-group-text">
-                            <span class="fas fa-lock"></span>
-                        </div>
-                    </div>
-                </div>
-
-                {{-- Confirmar senha --}}
-                <div class="input-group mb-3">
-                    <input
-                        type="password"
-                        name="password_confirmation"
-                        class="form-control"
-                        placeholder="Confirmar senha"
-                        required
-                    >
-                    <div class="input-group-append">
-                        <div class="input-group-text">
-                            <span class="fas fa-lock"></span>
+                            <span class="fas fa-envelope"></span>
                         </div>
                     </div>
                 </div>
@@ -67,7 +54,7 @@
                 <div class="row">
                     <div class="col-12">
                         <button type="submit" class="btn btn-primary btn-block">
-                            Redefinir senha
+                            Enviar link de recuperação
                         </button>
                     </div>
                 </div>
