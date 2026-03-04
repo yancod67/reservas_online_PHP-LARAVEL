@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('nome');
             $table->string('email');
-            $table->date('data_reserva');
+            $table->date('data_entrada');
+            $table->date('data_saida');
             $table->string('status')->default('pendente');
             $table->timestamps();
         });

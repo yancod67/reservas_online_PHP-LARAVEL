@@ -23,6 +23,9 @@ Route::get('/', function () {
 */
 Route::middleware(['auth'])->group(function () {
 
+   Route::get('/admin/reservas', [ReservaController::class, 'adminIndex'])
+    ->name('admin.reservas');
+
     // DASHBOARD (HOME DO SISTEMA)
     Route::get('/dashboard', [ReservaController::class, 'dashboard'])
         ->name('dashboard');

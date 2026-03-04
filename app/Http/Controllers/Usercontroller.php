@@ -15,10 +15,17 @@ class UserController extends Controller
     }
 
     public function update(Request $request, User $user)
-    {
-        $user->active = !$user->active;
-        $user->save();
-
-        return redirect()->route('users.index');
+{
+    if (!auth()->user()->isAdmin()) {
+        abort(403);
     }
+
+    $user->update([
+        'is_admin' => $request->boolean('is_admin'),
+    ]);
+
+    return redirect()
+        ->route('users.index')
+        ->with('success', 'Acesso do usuário atualizado!');
+}
 }

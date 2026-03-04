@@ -3,13 +3,22 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Reserva extends Model
 {
+    use HasFactory;
+
     protected $fillable = [
         'nome',
         'email',
-        'data_reserva',
+        'data_entrada',
+        'data_saida',
         'status',
+    ];
+
+    protected $casts = [
+        'data_entrada' => 'date',
+        'data_saida' => 'date',
     ];
 }
